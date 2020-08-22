@@ -1,0 +1,11 @@
+severity:
+  red:          0
+  orange:      20
+  yellow:      30
+  yellowgreen: 40
+  green:       55
+  brighgreen:  70
+template:
+  schemaVersion: 1
+  label: coverage
+  color: blue
