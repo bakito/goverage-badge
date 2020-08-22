@@ -7,5 +7,6 @@ require (
 	github.com/onsi/gomega v1.10.1
 	github.com/spf13/cobra v1.0.0
 	github.com/spf13/viper v1.7.1
+	golang.org/x/mod v0.3.0
 	golang.org/x/tools v0.0.0-20200821200730-1e23e48ab93b
 )

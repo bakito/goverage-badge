@@ -9,7 +9,8 @@ vet:
 # Run tests
 test: fmt vet
 	go test ./...  -coverprofile=coverage.out
-	go run main.go generate -q
+	go tool cover -func=coverage.out
+	go run main.go generate
 
 
 test-release: test goreleaser

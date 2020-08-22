@@ -3,6 +3,7 @@ package cmd
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/bakito/goverage-badge/pkg/mod"
 	"io/ioutil"
 
 	"github.com/bakito/goverage-badge/pkg/coverage"
@@ -51,15 +52,23 @@ var generateCmd = &cobra.Command{
 		ioutil.WriteFile(viper.GetString(fShieldConfig), b, 0644)
 
 		if !viper.GetBool(fQuiet) {
+			var repo string
+			if path, err := mod.Repo(); path != "" && err == nil {
+				repo = fmt.Sprintf("https://raw.githubusercontent.com/%s/master/%s", path, viper.GetString(fShieldConfig))
+			} else {
+				repo = fmt.Sprintf("<url-to-your-repo>%s\n", viper.GetString(fShieldConfig))
+			}
+
+			url := fmt.Sprintf("![Coverage](https://img.shields.io/endpoint?url=%s)\n", repo)
+
 			cmd.Printf("Coverage is: %s\n", badge.Message)
 			cmd.Printf("To add your badge to the readme as follows:\n")
 			cmd.Println()
-			cmd.Printf(shellColor, fmt.Sprintf("![Coverage](https://img.shields.io/endpoint?url=<url-to-your-%v>)\n", viper.GetString(fShieldConfig)))
+			cmd.Printf(shellColor, url)
 			cmd.Println()
 			cmd.Println("Visit: https://shields.io/endpoint for more details")
 			cmd.Println()
 		}
-
 		return nil
 	},
 }
