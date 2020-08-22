@@ -9,5 +9,5 @@ vet:
 # Run tests
 test: fmt vet
 	go test ./...  -coverprofile=coverage.out
-	go run main.go generate
+	go run main.go generate -q
 
