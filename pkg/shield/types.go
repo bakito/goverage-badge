@@ -8,11 +8,11 @@ import (
 var (
 	severity = map[string]int{
 		"red":         60,
-		"orange":      50,
-		"yellow":      40,
-		"yellowgreen": 30,
-		"green":       20,
-		"brighgreen":  10,
+		"orange":      20,
+		"yellow":      30,
+		"yellowgreen": 40,
+		"green":       55,
+		"brighgreen":  70,
 	}
 )
 
@@ -45,7 +45,7 @@ func (s *Shield) Update(label string, coverage float64) {
 		sj, jOK := severity[s.Ranges[j].Color]
 
 		if iOK && jOK {
-			return si > sj
+			return si < sj
 		}
 
 		return iOK
